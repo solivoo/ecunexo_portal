@@ -1,0 +1,15 @@
+node_modules
+dist
+.git
+.gitignore
+*.md
+.env
+.env.*
+!.env.example
+mail-service/.env
+mail-service/node_modules
+coverage
+.vscode
+.idea
+*.log
+pnpm-debug.log*

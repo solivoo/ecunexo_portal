@@ -1,0 +1,24 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VITE_MAIL_SERVICE_URL: ${VITE_MAIL_SERVICE_URL:-http://localhost:4001}
+    ports:
+      - "${WEB_PORT:-80}:80"
+    depends_on:
+      - mail
+    restart: unless-stopped
+
+  mail:
+    build:
+      context: ./mail-service
+      dockerfile: Dockerfile
+    ports:
+      - "${MAIL_PUBLISH_PORT:-4001}:4001"
+    env_file:
+      - ./mail-service/.env
+    environment:
+      MAIL_ALLOWED_ORIGINS: ${MAIL_ALLOWED_ORIGINS:-}
+    restart: unless-stopped

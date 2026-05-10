@@ -8,6 +8,7 @@ import {
   reasons,
   serviceItems,
   techImageUrl,
+  type RecommendationItem,
 } from '../data/figmaLandingContent'
 import { useContactForm } from '../../../hooks/useContactForm'
 import styles from './FigmaLandingPage.module.css'

@@ -8,9 +8,23 @@ dotenv.config()
 const app = express()
 
 const port = Number(process.env.MAIL_SERVICE_PORT ?? 4001)
-const allowedOrigin = process.env.MAIL_ALLOWED_ORIGIN ?? 'http://localhost:5173'
+const allowedOrigin =
+  process.env.MAIL_ALLOWED_ORIGIN ?? 'http://localhost:5173'
+const allowedOriginsList = process.env.MAIL_ALLOWED_ORIGINS
+  ? process.env.MAIL_ALLOWED_ORIGINS.split(',').map((value) => value.trim()).filter(Boolean)
+  : [allowedOrigin]
 
-app.use(cors({ origin: allowedOrigin }))
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOriginsList.includes(origin)) {
+        callback(null, true)
+        return
+      }
+      callback(null, false)
+    },
+  }),
+)
 app.use(express.json({ limit: '1mb' }))
 
 const smtpPort = Number(process.env.MAIL_PORT ?? 587)
@@ -72,7 +86,7 @@ app.post('/api/mail/send', async (req, res) => {
   }
 })
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
   // eslint-disable-next-line no-console
-  console.log(`Mail service escuchando en http://localhost:${port}`)
+  console.log(`Mail service escuchando en http://0.0.0.0:${port}`)
 })

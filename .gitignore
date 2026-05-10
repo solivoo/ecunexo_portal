@@ -12,6 +12,13 @@ dist
 dist-ssr
 *.local
 
+# Env (no subir secretos)
+.env
+.env.*
+!.env.example
+mail-service/.env
+stack.env
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

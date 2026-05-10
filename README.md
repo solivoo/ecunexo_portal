@@ -1,3 +1,13 @@
+# EcuNexo — Landing
+
+Landing en React + TypeScript + Vite. El formulario de contacto usa un microservicio en `mail-service/`.
+
+## Docker y Portainer
+
+Para clonar el repo, configurar variables y levantar la stack con Compose o Portainer, sigue **[DEPLOY.md](./DEPLOY.md)**.
+
+---
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
