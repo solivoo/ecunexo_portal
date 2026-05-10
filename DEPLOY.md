@@ -16,11 +16,9 @@ cd ecunexo_landing_page
 
 ## 2. Variables del servicio de correo
 
-Copia el ejemplo y edita con tus credenciales SMTP (no subas `.env` al repositorio):
+En **Portainer** no hace falta el archivo `mail-service/.env` en el servidor: define todas las variables `MAIL_*` en **Environment variables** del stack (o un `.env` de stack que Portainer cargue). Lista en `mail-service/.env.example`.
 
-```bash
-cp mail-service/.env.example mail-service/.env
-```
+Para desarrollo local puedes usar un `.env` en la **raíz del repo** (junto a `docker-compose.yml`): Compose lo usa para sustituir `${MAIL_HOST}`, etc., al hacer `docker compose up`.
 
 Ajusta al menos: `MAIL_HOST`, `MAIL_PORT`, `MAIL_SECURE`, `MAIL_USER`, `MAIL_PASS`, `MAIL_FROM_*`, `MAIL_TO`.
 
@@ -56,12 +54,10 @@ Comprobaciones:
 1. **Stacks** → **Add stack**.
 2. **Web editor** o **Repository**: si usas Git, apunta a este repo y rama.
 3. **Compose path**: `docker-compose.yml`.
-4. **Environment variables** (o sube un `.env` de stack):
-   - `VITE_MAIL_SERVICE_URL`: URL pública del servicio mail vista desde el navegador.
-   - `MAIL_ALLOWED_ORIGINS`: orígenes CORS (URLs de la landing).
-   - Opcional: `WEB_PORT`, `MAIL_PUBLISH_PORT`.
-5. Para el archivo **`mail-service/.env`**, en Portainer suele usarse **Secrets** o montar el archivo; alternativa: definir cada variable `MAIL_*` en el entorno del servicio `mail` (misma lista que en `mail-service/.env.example`).
-6. **Deploy the stack**.
+4. **Environment variables** del stack (obligatorias las mismas que en `mail-service/.env.example` para SMTP y destino):
+   - `VITE_MAIL_SERVICE_URL`, `MAIL_ALLOWED_ORIGINS`, `MAIL_HOST`, `MAIL_USER`, `MAIL_PASS`, `MAIL_FROM_EMAIL`, `MAIL_TO`, etc.
+   - Opcional: `WEB_PORT`, `MAIL_PUBLISH_PORT`, `MAIL_PORT`, `MAIL_SECURE`, `MAIL_FROM_NAME`, `MAIL_ALLOWED_ORIGIN`.
+5. **Deploy the stack** (ya no se usa `env_file: ./mail-service/.env` en el compose del repo).
 
 Tras el primer despliegue, si solo cambias variables del **mail**, basta con **recreate** del servicio `mail`. Si cambias **`VITE_MAIL_SERVICE_URL`**, hay que **rebuild** del servicio **`web`**.
 

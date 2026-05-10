@@ -17,8 +17,16 @@ services:
       dockerfile: Dockerfile
     ports:
       - "${MAIL_PUBLISH_PORT:-4001}:4001"
-    env_file:
-      - ./mail-service/.env
     environment:
+      MAIL_SERVICE_PORT: ${MAIL_SERVICE_PORT:-4001}
+      MAIL_ALLOWED_ORIGIN: ${MAIL_ALLOWED_ORIGIN:-http://localhost:5173}
       MAIL_ALLOWED_ORIGINS: ${MAIL_ALLOWED_ORIGINS:-}
+      MAIL_HOST: ${MAIL_HOST:?MAIL_HOST requerido}
+      MAIL_PORT: ${MAIL_PORT:-587}
+      MAIL_SECURE: ${MAIL_SECURE:-false}
+      MAIL_USER: ${MAIL_USER:?MAIL_USER requerido}
+      MAIL_PASS: ${MAIL_PASS:?MAIL_PASS requerido}
+      MAIL_FROM_NAME: ${MAIL_FROM_NAME:-EcuNexo}
+      MAIL_FROM_EMAIL: ${MAIL_FROM_EMAIL:?MAIL_FROM_EMAIL requerido}
+      MAIL_TO: ${MAIL_TO:?MAIL_TO requerido}
     restart: unless-stopped
