@@ -82,6 +82,10 @@ app.post('/api/mail/send', async (req, res) => {
 
     res.status(200).json({ ok: true })
   } catch (error) {
+    const message = error instanceof Error ? error.message : String(error)
+    // Solo logs del servidor (Portainer / docker logs); no exponer detalle al cliente.
+    // eslint-disable-next-line no-console
+    console.error('[mail/send] SMTP:', message)
     res.status(500).json({ ok: false, error: 'No se pudo enviar el correo' })
   }
 })
