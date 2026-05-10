@@ -11,6 +11,10 @@ import {
   type RecommendationItem,
 } from '../data/figmaLandingContent'
 import { useContactForm } from '../../../hooks/useContactForm'
+import {
+  buildGoogleCalendarReunionUrl,
+  downloadReunionCalendarInvite,
+} from '../../../utils/reunionCalendar'
 import styles from './FigmaLandingPage.module.css'
 
 const toneClassName = {
@@ -23,7 +27,8 @@ const toneClassName = {
 export function FigmaLandingPage(): ReactElement {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(true)
   const { register, handleSubmit, errors, isSubmitting, submitState, onSubmit } = useContactForm()
-  const whatsappLink = 'https://wa.me/593999999999?text=Hola%20EcuNexo,%20quiero%20mas%20informacion.'
+  const whatsappNumber = '593960889143'
+  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Hola EcuNexo, quiero más información.')}`
 
   return (
     <div className={`${styles.page} ${isDarkMode ? styles.darkMode : styles.lightMode}`}>
@@ -36,7 +41,7 @@ export function FigmaLandingPage(): ReactElement {
                 alt="Logo de ecunexo"
                 className={styles.logoImage}
               />
-            </picture>            
+            </picture>
           </p>
           <nav>
             <a href="#">Inicio</a>
@@ -192,11 +197,19 @@ export function FigmaLandingPage(): ReactElement {
             </div>
             <div className={styles.infoRow}>
               <span className={styles.infoIcon}><i className="bx bx-envelope" /></span>
-              <p><strong>Email</strong><br />contacto@ecunexo.com</p>
+              <p>
+                <strong>Email</strong>
+                <br />
+                <a href="mailto:galvarado@ecunexo.com">galvarado@ecunexo.com</a>
+              </p>
             </div>
             <div className={styles.infoRow}>
               <span className={styles.infoIcon}><i className="bx bx-phone" /></span>
-              <p><strong>Teléfono</strong><br />+593 4 XXX-XXXX</p>
+              <p>
+                <strong>Teléfono</strong>
+                <br />
+                <a href="tel:+593960889143">096 088 9143</a>
+              </p>
             </div>
             <div className={styles.infoCard}>
               <h4>Horario de Atención</h4>
@@ -205,8 +218,26 @@ export function FigmaLandingPage(): ReactElement {
             </div>
             <div className={styles.helpCard}>
               <h4>¿Tienes dudas?</h4>
-              <p>Agenda una videollamada gratuita con nuestro equipo técnico</p>
-              <button type="button" className={styles.lightButton}>Agendar Reunión</button>
+              <p>
+                Agenda una videollamada gratuita con nuestro equipo técnico. El botón descarga un
+                archivo de calendario: ábrelo y, en Outlook, confirma con <strong>Sí</strong> o{' '}
+                <strong>Guardar en el calendario</strong> para añadir el evento.
+              </p>
+              <button
+                type="button"
+                className={styles.lightButton}
+                onClick={downloadReunionCalendarInvite}
+              >
+                Agendar reunión
+              </button>
+              <a
+                href={buildGoogleCalendarReunionUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.helpCardCalendarLink}
+              >
+                O añadir en Google Calendar
+              </a>
             </div>
           </aside>
         </div>
@@ -222,7 +253,7 @@ export function FigmaLandingPage(): ReactElement {
                   alt="Logo de ecunexo"
                   className={styles.logoImage}
                 />
-              </picture>              
+              </picture>
             </p>
             <p>Transformando la gestión empresarial en Ecuador con tecnología de vanguardia.</p>
           </div>

@@ -5,7 +5,7 @@
 .headerInner{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;height:84px;padding:0 2rem}
 .logo{margin:0;color:#fff;font-weight:700;font-size:1.3rem}
 .logo{display:flex;align-items:center;gap:.55rem}
-.logoImage{width:11.5rem;height:auto;display:block}
+.logoImage{width:9.75rem;height:auto;display:block}
 .header nav{display:flex;gap:1.75rem;margin-left:auto;margin-right:2.5rem}
 .header a{color:#d1d5dc;text-decoration:none;font-size:1rem;font-weight:500}
 .themeToggle{width:2.25rem;height:2.25rem;border:1px solid #364153;border-radius:.5rem;background:#1e2939;color:#d1d5dc}
@@ -42,7 +42,7 @@
 .ctaBanner{margin-top:2rem;background:#155dfc;border-radius:1rem;text-align:center;padding:2.2rem 1.2rem}
 .ctaBanner h3{color:#fff;font-size:2rem;margin:0}
 .ctaBanner p{margin:.8rem 0 1.2rem}
-.lightButton{height:3rem;padding:0 1.2rem;border:none;border-radius:.5rem;color:#155dfc;background:#fff;font-weight:600}
+.lightButton{height:3rem;padding:0 1.2rem;border:none;border-radius:.5rem;color:#155dfc;background:#fff;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box}
 .recommendationGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:2rem}
 .recommendationCard{background:#101828;border:1px solid #1e2939;border-radius:.75rem;padding:1.25rem}
 .recommendationIcon{display:inline-flex;justify-content:center;align-items:center;width:2.4rem;height:2.4rem;border-radius:.6rem;background:#155dfc;color:#fff}
@@ -65,6 +65,8 @@
 .successText{margin:.5rem 0 0;color:#86efac}
 .errorText{margin:.4rem 0 0;color:#fca5a5;font-size:.85rem}
 .info p{margin:.2rem 0;color:#99a1af;line-height:1.45}
+.info a{color:#8ec5ff;text-decoration:none}
+.info a:hover{text-decoration:underline}
 .infoRow{display:flex;gap:.8rem;align-items:flex-start;margin-bottom:1rem}
 .infoRow strong{color:#fff}
 .infoIcon{width:2.75rem;height:2.75rem;border-radius:.5rem;background:#155dfc;display:grid;place-items:center;color:#fff;font-size:1.15rem;flex:0 0 2.75rem}
@@ -75,6 +77,8 @@
 .helpCard h4{margin:0;color:#fff}
 .helpCard p{margin:.45rem 0 .8rem;color:#dbe8ff}
 .helpCard .lightButton{height:2.5rem;padding:0 1rem}
+.helpCardCalendarLink{display:block;margin-top:.65rem;color:#fff;font-size:.9rem;font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.helpCardCalendarLink:hover{color:#e8efff}
 .footer{border-top:1px solid #1e2939;padding:3rem 4.5% 1.5rem;color:#99a1af;background:#101828}
 .footerMain{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1fr 1fr 1fr;gap:2rem}
 .footerBrand p:last-child{margin:.8rem 0 0;max-width:30ch;line-height:1.5}
@@ -104,9 +108,10 @@
 .lightMode .contact{background:linear-gradient(144deg,#eef4ff,#f7f9fd)}
 .lightMode .form input,.lightMode .form textarea{background:#f8fafc;border-color:#d4dce8;color:#0f172a}
 .lightMode .form label,.lightMode .infoRow strong{color:#0f172a}
+.lightMode .info a{color:#155dfc}
 .lightMode .socials a{background:#e2e8f0;color:#1e293b}
 .lightMode .errorText{color:#dc2626}
 .lightMode .successText{color:#166534}
 .lightMode .whatsappFloat{box-shadow:0 12px 22px #0f172a2b}
 @media (max-width:1000px){.grid4{grid-template-columns:repeat(2,minmax(0,1fr))}.grid3,.hero,.aboutSplit,.contactGrid,.recommendationGrid{grid-template-columns:1fr}.hero,.section{padding-inline:1rem;padding-top:4rem;padding-bottom:4rem}.headerInner{padding:0 1rem}.header nav{gap:.9rem;flex-wrap:wrap;justify-content:center;margin:0 auto;font-size:.92rem}.header a{font-size:.95rem}.themeToggle{display:none}.footer{padding-inline:1rem}.footerMain{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:640px){.grid4,.grid3,.footerMain,.recommendationGrid{grid-template-columns:1fr}.actions{flex-direction:column}.actions button,.lightButton{width:100%}.header{position:static}.headerInner{height:auto;flex-direction:column;align-items:flex-start;padding:.8rem 1rem;gap:.7rem}.header nav{justify-content:flex-start}.logo{font-size:1.1rem}.logoImage{width:9.2rem;height:auto}.whatsappFloat{right:.9rem;bottom:.9rem;width:3.2rem;height:3.2rem}}
+@media (max-width:640px){.grid4,.grid3,.footerMain,.recommendationGrid{grid-template-columns:1fr}.actions{flex-direction:column}.actions button,.lightButton{width:100%}.header{position:static}.headerInner{height:auto;flex-direction:column;align-items:flex-start;padding:.8rem 1rem;gap:.7rem}.header nav{justify-content:flex-start}.logo{font-size:1.1rem}.logoImage{width:7.85rem;height:auto}.whatsappFloat{right:.9rem;bottom:.9rem;width:3.2rem;height:3.2rem}}
