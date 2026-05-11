@@ -11,6 +11,7 @@ import {
   type RecommendationItem,
 } from '../data/figmaLandingContent'
 import { useContactForm } from '../../../hooks/useContactForm'
+import { ContactForm } from './ContactForm'
 import {
   buildGoogleCalendarReunionUrl,
   downloadReunionCalendarInvite,
@@ -26,7 +27,7 @@ const toneClassName = {
 
 export function FigmaLandingPage(): ReactElement {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(true)
-  const { register, handleSubmit, errors, isSubmitting, submitState, onSubmit } = useContactForm()
+  const { control, handleSubmit, errors, isSubmitting, submitState, onSubmit } = useContactForm()
   const whatsappNumber = '593960889143'
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Hola EcuNexo, quiero más información.')}`
 
@@ -140,55 +141,14 @@ export function FigmaLandingPage(): ReactElement {
         <h2>Contáctanos <span>Hoy</span></h2>
         <p className={styles.subtitle}>Estamos listos para ayudarte a comenzar tu transformación digital</p>
         <div className={styles.contactGrid}>
-          <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-            <h3>Envíanos un mensaje</h3>
-            <label>
-              Nombre Completo
-              <input
-                placeholder="Juan Pérez"
-                {...register('name', { required: 'El nombre es obligatorio' })}
-              />
-              {errors.name ? <small className={styles.errorText}>{errors.name.message}</small> : null}
-            </label>
-            <label>
-              Email
-              <input
-                placeholder="juan@empresa.com"
-                {...register('email', {
-                  required: 'El email es obligatorio',
-                  pattern: {
-                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                    message: 'Ingresa un email válido',
-                  },
-                })}
-              />
-              {errors.email ? <small className={styles.errorText}>{errors.email.message}</small> : null}
-            </label>
-            <label>
-              Empresa
-              <input placeholder="Mi Empresa S.A." {...register('company')} />
-            </label>
-            <label>
-              Mensaje
-              <textarea
-                rows={5}
-                placeholder="Cuéntanos sobre tu proyecto..."
-                {...register('message', { required: 'El mensaje es obligatorio' })}
-              />
-              {errors.message ? (
-                <small className={styles.errorText}>{errors.message.message}</small>
-              ) : null}
-            </label>
-            <button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? 'Enviando...' : 'Enviar Mensaje'} <i className="bx bx-send" />
-            </button>
-            {submitState === 'success' ? (
-              <p className={styles.successText}>Mensaje enviado correctamente.</p>
-            ) : null}
-            {submitState === 'error' ? (
-              <p className={styles.errorText}>No se pudo enviar el mensaje. Intenta de nuevo.</p>
-            ) : null}
-          </form>
+          <ContactForm
+            control={control}
+            handleSubmit={handleSubmit}
+            onSubmitValid={onSubmit}
+            errors={errors}
+            isSubmitting={isSubmitting}
+            submitState={submitState}
+          />
           <aside className={styles.info}>
             <h3>Información de Contacto</h3>
             <div className={styles.infoRow}>

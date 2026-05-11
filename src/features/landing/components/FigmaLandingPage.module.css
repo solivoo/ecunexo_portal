@@ -1,4 +1,14 @@
-.page{background:#030712;color:#d1d5dc;transition:background-color .25s,color .25s}
+.page{
+  --ecu-brand:#6366f1;
+  --ecu-brand-hover:#4f46e5;
+  --ecu-brand-soft:rgba(99,102,241,.22);
+  --ecu-brand-border:rgba(99,102,241,.4);
+  --ecu-accent:#a5b4fc;
+  --ecu-accent-bright:#c7d2fe;
+  background:#030712;
+  color:#d1d5dc;
+  transition:background-color .25s,color .25s;
+}
 .darkMode{background:#030712;color:#d1d5dc}
 .lightMode{background:#f5f7fb;color:#1f2937}
 .header{position:sticky;top:0;z-index:20;background:#101828cc;border-bottom:1px solid #1e2939;backdrop-filter:blur(8px)}
@@ -14,14 +24,14 @@
 .hero,.section{max-width:1280px;margin:0 auto;padding:5rem 4.5%}
 .hero,.section{padding-top:6rem;padding-bottom:6rem}
 .hero{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
-.badge{display:inline-flex;align-items:center;gap:.45rem;padding:.4rem .75rem;border-radius:999px;background:#1c398e33;border:1px solid #193cb84d;color:#8ec5ff;font-size:.85rem}
+.badge{display:inline-flex;align-items:center;gap:.45rem;padding:.4rem .75rem;border-radius:999px;background:var(--ecu-brand-soft);border:1px solid var(--ecu-brand-border);color:var(--ecu-accent-bright);font-size:.85rem}
 .badge i{font-size:.95rem}
 .hero h1{font-size:clamp(2.2rem,4.5vw,3.75rem);color:#fff;margin:1.25rem 0;line-height:1.2}
-.hero h1 span,.section h2 span{color:#2b7fff}
+.hero h1 span,.section h2 span{color:var(--ecu-accent)}
 .hero p{font-size:1.15rem;line-height:1.6;max-width:60ch}
 .hero img{width:100%;border-radius:.75rem;box-shadow:0 20px 30px #0006}
 .actions{display:flex;gap:1rem;margin-top:2rem}
-.actions button,.form button{height:3.25rem;padding:0 1.3rem;border:none;border-radius:.5rem;background:#155dfc;color:#fff;font-weight:600;cursor:pointer}
+.actions button,.form button{height:3.25rem;padding:0 1.3rem;border:none;border-radius:.5rem;background:var(--ecu-brand);color:#fff;font-weight:600;cursor:pointer}
 .actions button,.form button{display:inline-flex;align-items:center;justify-content:center;gap:.45rem}
 .actions button i,.form button i{font-size:1rem}
 .actions .secondary{background:transparent;border:1px solid #4a5565;color:#d1d5dc}
@@ -34,24 +44,24 @@
 .card{background:#101828;border:1px solid #1e2939;border-radius:.75rem;padding:1.25rem}
 .card h3{color:#fff;margin:.7rem 0}
 .card p{margin:0;color:#99a1af;line-height:1.6}
-.icon{display:inline-flex;justify-content:center;align-items:center;width:2.5rem;height:2.5rem;border-radius:.5rem;background:#2563eb;color:#fff;font-size:1.5rem}
+.icon{display:inline-flex;justify-content:center;align-items:center;width:2.5rem;height:2.5rem;border-radius:.5rem;background:var(--ecu-brand);color:#fff;font-size:1.5rem}
 .icon i{font-size:1.2rem}
-.toneBlue{background:#2563eb}.toneSky{background:#0ea5e9}.toneSlate{background:#64748b}.toneEmerald{background:#10b981}
+.toneBlue{background:var(--ecu-brand)}.toneSky{background:#0ea5e9}.toneSlate{background:#64748b}.toneEmerald{background:#10b981}
 .center{text-align:center}
 .center .icon{border-radius:999px;width:3rem;height:3rem}
-.ctaBanner{margin-top:2rem;background:#155dfc;border-radius:1rem;text-align:center;padding:2.2rem 1.2rem}
+.ctaBanner{margin-top:2rem;background:var(--ecu-brand);border-radius:1rem;text-align:center;padding:2.2rem 1.2rem}
 .ctaBanner h3{color:#fff;font-size:2rem;margin:0}
 .ctaBanner p{margin:.8rem 0 1.2rem}
-.lightButton{height:3rem;padding:0 1.2rem;border:none;border-radius:.5rem;color:#155dfc;background:#fff;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box}
+.lightButton{height:3rem;padding:0 1.2rem;border:none;border-radius:.5rem;color:var(--ecu-brand);background:#fff;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box}
 .recommendationGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:2rem}
 .recommendationCard{background:#101828;border:1px solid #1e2939;border-radius:.75rem;padding:1.25rem}
-.recommendationIcon{display:inline-flex;justify-content:center;align-items:center;width:2.4rem;height:2.4rem;border-radius:.6rem;background:#155dfc;color:#fff}
+.recommendationIcon{display:inline-flex;justify-content:center;align-items:center;width:2.4rem;height:2.4rem;border-radius:.6rem;background:var(--ecu-brand);color:#fff}
 .recommendationIcon i{font-size:1.1rem}
 .recommendationCard h3{margin:.75rem 0 .45rem;color:#fff;font-size:1.1rem}
 .recommendationCard p{margin:0;color:#99a1af;line-height:1.55}
 .aboutSplit{margin-top:3rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center}
 .reason{display:flex;gap:.9rem;align-items:flex-start;margin-bottom:1.1rem}
-.reason span{display:grid;place-items:center;flex:0 0 1.8rem;height:1.8rem;border-radius:999px;background:#155dfc;color:#fff;font-weight:700;font-size:.9rem}
+.reason span{display:grid;place-items:center;flex:0 0 1.8rem;height:1.8rem;border-radius:999px;background:var(--ecu-brand);color:#fff;font-weight:700;font-size:.9rem}
 .reason h4{margin:0;color:#fff}.reason p{margin:.4rem 0 0;color:#99a1af}
 .aboutSplit img{width:100%;border-radius:.75rem;box-shadow:0 20px 30px #0006}
 .contact{background:linear-gradient(144deg,#030712,#101828)}
@@ -62,18 +72,42 @@
 .form input,.form textarea{display:block;width:100%;margin-top:.45rem;background:#1e2939;border:1px solid #364153;border-radius:.45rem;padding:.8rem;color:#fff}
 .form input,.form textarea{font:inherit}
 .form button:disabled{opacity:.8;cursor:not-allowed}
+/* Botón enviar: marca índigo (alinea con Tailwind / Syncfusion) */
+.form :global(.e-btn.sfSubmitBtn),
+.darkMode .form :global(.e-btn.sfSubmitBtn.e-primary){display:inline-flex;align-items:center;justify-content:center;gap:.45rem;height:3.25rem;padding:0 1.3rem;border-radius:.5rem;font-weight:600;text-transform:none;background-color:var(--ecu-brand)!important;border:1px solid var(--ecu-brand)!important;color:#fff!important}
+.form :global(.e-btn.sfSubmitBtn:hover:not(:disabled)),
+.darkMode .form :global(.e-btn.sfSubmitBtn.e-primary:hover:not(:disabled)){background-color:var(--ecu-brand-hover)!important;border-color:var(--ecu-brand-hover)!important;color:#fff!important}
+.form :global(.e-btn.sfSubmitBtn .e-btn-icon),.form :global(.e-btn.sfSubmitBtn i),.form :global(.e-btn.sfSubmitBtn .e-btn-text),.form :global(.e-btn.sfSubmitBtn span),
+.darkMode .form :global(.e-btn.sfSubmitBtn.e-primary span),.darkMode .form :global(.e-btn.sfSubmitBtn.e-primary i){font-size:1rem;color:#fff!important}
+.form :global(.e-btn.sfSubmitBtn:focus-visible){outline:2px solid var(--ecu-accent);outline-offset:2px}
+.form :global(.e-input-group){margin-top:.45rem;width:100%}
+.form :global(.e-input-group.e-float-icon-left),.form :global(.e-float-input){width:100%}
+/* Tema Tailwind3 en modo oscuro de la landing: fondos claros en inputs; alineamos a #1e2939 + texto claro */
+.darkMode .form :global(.e-input-group),
+.darkMode .form :global(.e-input-group.e-control-wrapper){background-color:#1e2939!important;border:1px solid #364153!important;border-radius:.45rem}
+.darkMode .form :global(.e-input-group .e-input),
+.darkMode .form :global(.e-input-group input.e-input),
+.darkMode .form :global(input.e-input.e-control){background-color:#1e2939!important;color:#fff!important;border-color:transparent!important}
+.darkMode .form :global(.e-input-group:not(.e-disabled):not(.e-float-icon-left):hover),
+.darkMode .form :global(.e-input-group.e-input-focus){border-color:var(--ecu-brand)!important;box-shadow:none!important}
+.darkMode .form :global(.e-input::placeholder),
+.darkMode .form :global(.e-input-group input::placeholder){color:#94a3b8!important;opacity:1}
+.darkMode .form :global(textarea.e-input){background-color:#1e2939!important;color:#fff!important;border:1px solid #364153!important;border-radius:.45rem}
+.darkMode .form :global(.e-float-line),
+.darkMode .form :global(.e-float-text){display:none}
+.darkMode .form :global(.e-input-group .e-icons){color:#94a3b8}
 .successText{margin:.5rem 0 0;color:#86efac}
 .errorText{margin:.4rem 0 0;color:#fca5a5;font-size:.85rem}
 .info p{margin:.2rem 0;color:#99a1af;line-height:1.45}
-.info a{color:#8ec5ff;text-decoration:none}
+.info a{color:var(--ecu-accent);text-decoration:none}
 .info a:hover{text-decoration:underline}
 .infoRow{display:flex;gap:.8rem;align-items:flex-start;margin-bottom:1rem}
 .infoRow strong{color:#fff}
-.infoIcon{width:2.75rem;height:2.75rem;border-radius:.5rem;background:#155dfc;display:grid;place-items:center;color:#fff;font-size:1.15rem;flex:0 0 2.75rem}
+.infoIcon{width:2.75rem;height:2.75rem;border-radius:.5rem;background:var(--ecu-brand);display:grid;place-items:center;color:#fff;font-size:1.15rem;flex:0 0 2.75rem}
 .infoIcon i{font-size:1.2rem}
-.infoCard{margin-top:1rem;background:#16245633;border:1px solid #1c398e4d;border-radius:.7rem;padding:.9rem}
+.infoCard{margin-top:1rem;background:var(--ecu-brand-soft);border:1px solid var(--ecu-brand-border);border-radius:.7rem;padding:.9rem}
 .infoCard h4{margin:0 0 .4rem;color:#fff}
-.helpCard{margin-top:1rem;background:#155dfc;border-radius:.75rem;padding:1rem}
+.helpCard{margin-top:1rem;background:var(--ecu-brand);border-radius:.75rem;padding:1rem}
 .helpCard h4{margin:0;color:#fff}
 .helpCard p{margin:.45rem 0 .8rem;color:#dbe8ff}
 .helpCard .lightButton{height:2.5rem;padding:0 1rem}
@@ -96,19 +130,27 @@
 .lightMode .header{background:#ffffffd9;border-bottom-color:#dbe2ec}
 .lightMode .header a{color:#334155}
 .lightMode .themeToggle{background:#e2e8f0;border-color:#cbd5e1;color:#0f172a}
-.lightMode .badge{background:#dbeafe;border-color:#93c5fd;color:#1d4ed8}
+.lightMode .badge{background:#e0e7ff;border-color:#c7d2fe;color:#4338ca}
 .lightMode .actions .secondary{border-color:#94a3b8;color:#334155;background:#ffffff}
 .lightMode .logo{color:#0f172a}
 .lightMode .hero h1,.lightMode .section h2,.lightMode .card h3,.lightMode .reason h4,.lightMode .form h3,.lightMode .info h3,.lightMode .footerCol h4{color:#0f172a}
 .lightMode .card,.lightMode .form,.lightMode .info,.lightMode .footer,.lightMode .header{background:#ffffff}
 .lightMode .card,.lightMode .form,.lightMode .info,.lightMode .footer,.lightMode .footerCopy,.lightMode .infoCard,.lightMode .recommendationCard{border-color:#dbe2ec}
 .lightMode .card p,.lightMode .subtitle,.lightMode .reason p,.lightMode .info p,.lightMode .footerCol a,.lightMode .footerCopy,.lightMode .recommendationCard p{color:#475569}
+.lightMode .infoCard{background:#f1f5f9;border-color:#cbd5e1}
+.lightMode .infoCard h4{color:#0f172a}
+.lightMode .infoCard p{color:#475569}
+.lightMode .info .helpCard p{color:#e8efff}
+.lightMode .info .helpCard h4{color:#fff}
 .lightMode .recommendationCard{background:#ffffff}
 .lightMode .recommendationCard h3{color:#0f172a}
 .lightMode .contact{background:linear-gradient(144deg,#eef4ff,#f7f9fd)}
 .lightMode .form input,.lightMode .form textarea{background:#f8fafc;border-color:#d4dce8;color:#0f172a}
+.lightMode .form :global(.e-input-group .e-input){background:#f8fafc;border-color:#d4dce8;color:#0f172a}
+.lightMode .form :global(.e-btn.sfSubmitBtn),.lightMode .form :global(.e-btn.sfSubmitBtn.e-primary){background-color:var(--ecu-brand);border-color:var(--ecu-brand);color:#fff}
+.lightMode .form :global(.e-btn.sfSubmitBtn .e-btn-icon),.lightMode .form :global(.e-btn.sfSubmitBtn i),.lightMode .form :global(.e-btn.sfSubmitBtn span){color:#fff}
 .lightMode .form label,.lightMode .infoRow strong{color:#0f172a}
-.lightMode .info a{color:#155dfc}
+.lightMode .info a{color:var(--ecu-brand)}
 .lightMode .socials a{background:#e2e8f0;color:#1e293b}
 .lightMode .errorText{color:#dc2626}
 .lightMode .successText{color:#166534}

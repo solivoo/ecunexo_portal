@@ -5,6 +5,7 @@ services:
       dockerfile: Dockerfile
       args:
         VITE_MAIL_SERVICE_URL: ${VITE_MAIL_SERVICE_URL:-http://localhost:4001}
+        VITE_SYNCFUSION_LICENSE: ${VITE_SYNCFUSION_LICENSE:-}
     ports:
       - "${WEB_PORT:-80}:80"
     depends_on:

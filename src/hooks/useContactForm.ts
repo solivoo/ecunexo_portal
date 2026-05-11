@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, type Control, type FieldErrors, type UseFormHandleSubmit } from 'react-hook-form'
 
 export interface ContactFormValues {
   readonly name: string
@@ -9,9 +9,9 @@ export interface ContactFormValues {
 }
 
 interface UseContactFormResult {
-  readonly register: ReturnType<typeof useForm<ContactFormValues>>['register']
-  readonly handleSubmit: ReturnType<typeof useForm<ContactFormValues>>['handleSubmit']
-  readonly errors: ReturnType<typeof useForm<ContactFormValues>>['formState']['errors']
+  readonly control: Control<ContactFormValues>
+  readonly handleSubmit: UseFormHandleSubmit<ContactFormValues>
+  readonly errors: FieldErrors<ContactFormValues>
   readonly isSubmitting: boolean
   readonly submitState: 'idle' | 'success' | 'error'
   readonly onSubmit: (values: ContactFormValues) => Promise<void>
@@ -20,7 +20,7 @@ interface UseContactFormResult {
 export function useContactForm(): UseContactFormResult {
   const [submitState, setSubmitState] = useState<'idle' | 'success' | 'error'>('idle')
   const {
-    register,
+    control,
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
@@ -56,7 +56,7 @@ export function useContactForm(): UseContactFormResult {
   }
 
   return {
-    register,
+    control,
     handleSubmit,
     errors,
     isSubmitting,

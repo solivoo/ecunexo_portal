@@ -8,6 +8,15 @@ importers:
 
   .:
     dependencies:
+      '@syncfusion/ej2-base':
+        specifier: ^33.2.3
+        version: 33.2.3
+      '@syncfusion/ej2-react-buttons':
+        specifier: ^33.2.5
+        version: 33.2.5
+      '@syncfusion/ej2-react-inputs':
+        specifier: ^33.2.5
+        version: 33.2.5
       boxicons:
         specifier: ^2.1.4
         version: 2.1.4
@@ -324,6 +333,34 @@ packages:
 
   '@rolldown/pluginutils@1.0.0-rc.7':
     resolution: {integrity: sha512-qujRfC8sFVInYSPPMLQByRh7zhwkGFS4+tyMQ83srV1qrxL4g8E2tyxVVyxd0+8QeBM1mIk9KbWxkegRr76XzA==}
+
+  '@syncfusion/ej2-base@33.2.3':
+    resolution: {integrity: sha512-EmBGfKdf+4qmqRPjjjiVnYM/3WEuHaoXNYqYp6bzrwQXARzqgLXgvo+hQkGnRE6ge7WbHMkPkCGyfFxJOufZcw==}
+    hasBin: true
+
+  '@syncfusion/ej2-buttons@33.2.5':
+    resolution: {integrity: sha512-VXqWy3GS0+5i2KWCCwe9RhwSY4UiMIpVdUsYr0m92qL4m+ne/Yjcqa/NSRXLzZ8HhBjZYfF6ljr8c5WuILtMCQ==}
+
+  '@syncfusion/ej2-icons@33.2.3':
+    resolution: {integrity: sha512-9Y8zZPQCvQuk64p5J5Gp4uX1kH3pjNJd5Ho8qP8jOSfk90FBeSQ9O4CjcMbcNtZ9KLIajLU3gytV98R6FGE+OA==}
+
+  '@syncfusion/ej2-inputs@33.2.5':
+    resolution: {integrity: sha512-WKgp8k9cAR1YL4xsFr6NMggeQI94YDhpDExJC64Ht9nFaaK4TLxFkH5zkOm4pUZykCn4l1DKTmufytJe+hjfXg==}
+
+  '@syncfusion/ej2-popups@33.2.5':
+    resolution: {integrity: sha512-7NNbwxL+FWhWrnJjuTy/m9XYVTkUzh5QzzxcLdF8op4sTC03KOmk0WhmLNQn4Wap0JMtWq//DV3Go11ZRqveyg==}
+
+  '@syncfusion/ej2-react-base@33.2.3':
+    resolution: {integrity: sha512-QgEuZ8ZZBGo6HQNu2VGyYKakY9KYshQDTw+2wmmTDWZZNilbmi5OYXEdscIenrUur7fmsOGVOswv6xYTnuyf3g==}
+
+  '@syncfusion/ej2-react-buttons@33.2.5':
+    resolution: {integrity: sha512-IrxzOKMZXIoXRQTxixWTVx0jucLonBZywxr45CC9fqMYjR4wQJG1MankJZUn8AbCmGACCGcJMztsz4SUlOB+Cg==}
+
+  '@syncfusion/ej2-react-inputs@33.2.5':
+    resolution: {integrity: sha512-Bpl03WNh70RTKi8TRiolfpyzErqqr1TpDfhGTcAUdQM27pSTpYCNETIInb0PsiOZc2S7Z2h7Z/A3Mq+EbPQ75w==}
+
+  '@syncfusion/ej2-splitbuttons@33.2.3':
+    resolution: {integrity: sha512-iqCVkqylgBffFF2vTsYXoL9bCy5AQf+XaQXwSHg+H+x4eOfqBgdNESE049g3ljwO13O5VDX3FToDXXhcXw5KRA==}
 
   '@tybys/wasm-util@0.10.2':
     resolution: {integrity: sha512-RoBvJ2X0wuKlWFIjrwffGw1IqZHKQqzIchKaadZZfnNpsAYp2mM0h36JtPCjNDAHGgYez/15uMBpfGwchhiMgg==}
@@ -1285,6 +1322,49 @@ snapshots:
   '@rolldown/pluginutils@1.0.0-rc.18': {}
 
   '@rolldown/pluginutils@1.0.0-rc.7': {}
+
+  '@syncfusion/ej2-base@33.2.3':
+    dependencies:
+      '@syncfusion/ej2-icons': 33.2.3
+
+  '@syncfusion/ej2-buttons@33.2.5':
+    dependencies:
+      '@syncfusion/ej2-base': 33.2.3
+
+  '@syncfusion/ej2-icons@33.2.3': {}
+
+  '@syncfusion/ej2-inputs@33.2.5':
+    dependencies:
+      '@syncfusion/ej2-base': 33.2.3
+      '@syncfusion/ej2-buttons': 33.2.5
+      '@syncfusion/ej2-popups': 33.2.5
+      '@syncfusion/ej2-splitbuttons': 33.2.3
+
+  '@syncfusion/ej2-popups@33.2.5':
+    dependencies:
+      '@syncfusion/ej2-base': 33.2.3
+      '@syncfusion/ej2-buttons': 33.2.5
+
+  '@syncfusion/ej2-react-base@33.2.3':
+    dependencies:
+      '@syncfusion/ej2-base': 33.2.3
+
+  '@syncfusion/ej2-react-buttons@33.2.5':
+    dependencies:
+      '@syncfusion/ej2-base': 33.2.3
+      '@syncfusion/ej2-buttons': 33.2.5
+      '@syncfusion/ej2-react-base': 33.2.3
+
+  '@syncfusion/ej2-react-inputs@33.2.5':
+    dependencies:
+      '@syncfusion/ej2-base': 33.2.3
+      '@syncfusion/ej2-inputs': 33.2.5
+      '@syncfusion/ej2-react-base': 33.2.3
+
+  '@syncfusion/ej2-splitbuttons@33.2.3':
+    dependencies:
+      '@syncfusion/ej2-base': 33.2.3
+      '@syncfusion/ej2-popups': 33.2.5
 
   '@tybys/wasm-util@0.10.2':
     dependencies:

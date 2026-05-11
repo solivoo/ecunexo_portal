@@ -1,0 +1,4 @@
+/* Tema Tailwind 3 (equivalente a "Tailwind CSS" en demos Syncfusion). */
+@import '@syncfusion/ej2-base/styles/tailwind3.css';
+@import '@syncfusion/ej2-react-inputs/styles/tailwind3.css';
+@import '@syncfusion/ej2-react-buttons/styles/tailwind3.css';

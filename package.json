@@ -10,6 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@syncfusion/ej2-base": "^33.2.3",
+    "@syncfusion/ej2-react-buttons": "^33.2.5",
+    "@syncfusion/ej2-react-inputs": "^33.2.5",
     "boxicons": "^2.1.4",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
