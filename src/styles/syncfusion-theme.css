@@ -1,4 +1,10 @@
-/* Tema Tailwind 3 (equivalente a "Tailwind CSS" en demos Syncfusion). */
+/*
+  Tema Tailwind 3 (EJ2 “Tailwind 3.4” en documentación).
+  Modo oscuro: añade la clase `e-dark-mode` en un ancestro (p. ej. `document.body`);
+  ver Appearance / theming en la documentación de EJ2 React.
+  Personalización: variables --color-sf-* en :root o bajo ese ancestro.
+  https://ej2.syncfusion.com/react/documentation/appearance/css-variables
+*/
 @import '@syncfusion/ej2-base/styles/tailwind3.css';
 @import '@syncfusion/ej2-react-inputs/styles/tailwind3.css';
 @import '@syncfusion/ej2-react-buttons/styles/tailwind3.css';

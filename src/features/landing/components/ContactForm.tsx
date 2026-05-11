@@ -40,28 +40,34 @@ export function ContactForm({
     <form className={styles.form} onSubmit={handleSubmit(onSubmitValid)}>
       <h3>Envíanos un mensaje</h3>
 
-      <label>
-        Nombre Completo
+      <div className={styles.formField}>
         <Controller
           name="name"
           control={control}
           rules={{ required: 'El nombre es obligatorio' }}
           render={({ field }) => (
             <TextBoxComponent
-              placeholder="Juan Pérez"
-              floatLabelType="Never"
+              width="100%"
+              floatLabelType="Always"
+              placeholder="Nombre: "
               value={field.value ?? ''}
               change={textChange(field.onChange)}
               blur={field.onBlur}
-              htmlAttributes={{ name: field.name, id: 'contact-name', autoComplete: 'name' }}
+              htmlAttributes={{
+                name: field.name,
+                id: 'contact-name',
+                autoComplete: 'name',
+                title: 'Ej.: Juan Pérez',
+                'aria-label': 'Nombre completo',
+                style: "height: 2.5rem; font-size: 1rem; display: flex; align-items: center;",
+              }}
             />
           )}
         />
         {errors.name ? <small className={styles.errorText}>{errors.name.message}</small> : null}
-      </label>
+      </div>
 
-      <label>
-        Email
+      <div className={styles.formField}>
         <Controller
           name="email"
           control={control}
@@ -74,8 +80,9 @@ export function ContactForm({
           }}
           render={({ field }) => (
             <TextBoxComponent
-              placeholder="juan@empresa.com"
-              floatLabelType="Never"
+              width="100%"
+              floatLabelType="Always"
+              placeholder="Email:"
               type="email"
               value={field.value ?? ''}
               change={textChange(field.onChange)}
@@ -84,22 +91,25 @@ export function ContactForm({
                 name: field.name,
                 id: 'contact-email',
                 autoComplete: 'email',
+                title: 'Ej.: juan@empresa.com',
+                'aria-label': 'Email',
+                style: "height: 2.5rem; font-size: 1rem; display: flex; align-items: center;",
               }}
             />
           )}
         />
         {errors.email ? <small className={styles.errorText}>{errors.email.message}</small> : null}
-      </label>
+      </div>
 
-      <label>
-        Empresa
+      <div className={styles.formField}>
         <Controller
           name="company"
           control={control}
           render={({ field }) => (
             <TextBoxComponent
-              placeholder="Mi Empresa S.A."
-              floatLabelType="Never"
+              width="100%"
+              floatLabelType="Always"
+              placeholder="Empresa:"
               value={field.value ?? ''}
               change={textChange(field.onChange)}
               blur={field.onBlur}
@@ -107,41 +117,49 @@ export function ContactForm({
                 name: field.name,
                 id: 'contact-company',
                 autoComplete: 'organization',
+                title: 'Opcional. Ej.: Mi Empresa S.A.',
+                'aria-label': 'Empresa',
+                style: "height: 2.5rem; font-size: 1rem; display: flex; align-items: center;",
               }}
             />
           )}
         />
-      </label>
+      </div>
 
-      <label>
-        Mensaje
+      <div className={styles.formField}>
         <Controller
           name="message"
           control={control}
           rules={{ required: 'El mensaje es obligatorio' }}
           render={({ field }) => (
             <TextAreaComponent
-              placeholder="Cuéntanos sobre tu proyecto..."
-              floatLabelType="Never"
+              width="100%"
+              floatLabelType="Always"
+              placeholder="Mensaje:"
               resizeMode="Vertical"
               rows={5}
               value={field.value ?? ''}
               change={textChange(field.onChange)}
               blur={field.onBlur}
-              htmlAttributes={{ name: field.name, id: 'contact-message' }}
+              htmlAttributes={{
+                name: field.name,
+                id: 'contact-message',
+                title: 'Describe tu proyecto o consulta',
+                'aria-label': 'Mensaje',
+              }}
             />
           )}
         />
         {errors.message ? (
           <small className={styles.errorText}>{errors.message.message}</small>
         ) : null}
-      </label>
+      </div>
 
       <ButtonComponent
         type="submit"
         isPrimary
         disabled={isSubmitting}
-        cssClass={`${styles.sfSubmitBtn} e-primary`}
+        cssClass="e-primary e-block"
       >
         {isSubmitting ? 'Enviando...' : 'Enviar Mensaje'}{' '}
         <i className="bx bx-send" />

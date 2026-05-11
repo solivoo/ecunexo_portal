@@ -1,4 +1,4 @@
-import { useState, type ReactElement } from 'react'
+import { useEffect, useState, type ReactElement } from 'react'
 import logoDark from '../../../assets/solo_logo_ecunexo_dark.svg'
 import logoLight from '../../../assets/solo_logo_ecunexo_light.svg'
 import {
@@ -28,6 +28,14 @@ const toneClassName = {
 export function FigmaLandingPage(): ReactElement {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(true)
   const { control, handleSubmit, errors, isSubmitting, submitState, onSubmit } = useContactForm()
+
+  /** Tema Tailwind 3 EJ2: variables y estilos oscuros bajo `.e-dark-mode` (documentación Appearance). */
+  useEffect(() => {
+    document.body.classList.toggle('e-dark-mode', isDarkMode)
+    return () => {
+      document.body.classList.remove('e-dark-mode')
+    }
+  }, [isDarkMode])
   const whatsappNumber = '593960889143'
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Hola EcuNexo, quiero más información.')}`
 
