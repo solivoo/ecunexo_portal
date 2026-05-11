@@ -8,6 +8,13 @@ export interface ContactFormValues {
   readonly message: string
 }
 
+const defaultFormValues: ContactFormValues = {
+  name: '',
+  email: '',
+  company: '',
+  message: '',
+}
+
 interface UseContactFormResult {
   readonly control: Control<ContactFormValues>
   readonly handleSubmit: UseFormHandleSubmit<ContactFormValues>
@@ -24,13 +31,11 @@ export function useContactForm(): UseContactFormResult {
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
+    clearErrors,
   } = useForm<ContactFormValues>({
-    defaultValues: {
-      name: '',
-      email: '',
-      company: '',
-      message: '',
-    },
+    defaultValues: defaultFormValues,
+    /* Tras enviar, reset vacía campos; Syncfusion dispara `change` y con onChange se revalidaba todo. */
+    reValidateMode: 'onSubmit',
   })
 
   const onSubmit = async (values: ContactFormValues): Promise<void> => {
@@ -48,8 +53,15 @@ export function useContactForm(): UseContactFormResult {
         return
       }
 
+      reset(defaultFormValues, {
+        keepErrors: false,
+        keepDirty: false,
+        keepTouched: false,
+        keepIsSubmitted: false,
+        keepSubmitCount: false,
+      })
+      clearErrors()
       setSubmitState('success')
-      reset()
     } catch {
       setSubmitState('error')
     }
