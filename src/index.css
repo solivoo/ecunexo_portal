@@ -9,7 +9,8 @@
   --color-title: #0f172a;
   --color-primary: #1d4ed8;
   --color-muted-surface: #e8f1ff;
-  --font-base: Manrope, 'Segoe UI', sans-serif;
+  --font-base: Poppins, 'Segoe UI', Roboto, Arial, sans-serif;
+  --glb-font-family: var(--font-base);
 }
 
 *,

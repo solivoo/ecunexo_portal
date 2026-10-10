@@ -1,3 +1,4 @@
+import { useToast } from 'glubox'
 import { useState } from 'react'
 import { useForm, type Control, type FieldErrors, type UseFormHandleSubmit } from 'react-hook-form'
 
@@ -9,19 +10,19 @@ export interface ContactFormValues {
   readonly message: string
 }
 
+export const topicOptions = [
+  { value: 'demo', label: 'Solicitar demo' },
+  { value: 'pricing', label: 'Propuesta y precios' },
+  { value: 'support', label: 'Soporte técnico' },
+  { value: 'other', label: 'Otra consulta' },
+] as const
+
 const defaultFormValues: ContactFormValues = {
   name: '',
   email: '',
   company: '',
   topic: '',
   message: '',
-}
-
-const topicLabels: Record<string, string> = {
-  demo: 'Solicitar demo',
-  pricing: 'Precios e implementación',
-  support: 'Soporte técnico',
-  other: 'Otra consulta',
 }
 
 interface UseContactFormResult {
@@ -31,9 +32,11 @@ interface UseContactFormResult {
   readonly isSubmitting: boolean
   readonly submitState: 'idle' | 'success' | 'error'
   readonly onSubmit: (values: ContactFormValues) => Promise<void>
+  readonly selectTopic: (topic: string) => void
 }
 
 export function useContactForm(): UseContactFormResult {
+  const { show } = useToast()
   const [submitState, setSubmitState] = useState<'idle' | 'success' | 'error'>('idle')
   const {
     control,
@@ -41,10 +44,15 @@ export function useContactForm(): UseContactFormResult {
     formState: { errors, isSubmitting },
     reset,
     clearErrors,
+    setValue,
   } = useForm<ContactFormValues>({
     defaultValues: defaultFormValues,
     reValidateMode: 'onChange',
   })
+
+  const selectTopic = (topic: string): void => {
+    setValue('topic', topic, { shouldValidate: false })
+  }
 
   const onSubmit = async (values: ContactFormValues): Promise<void> => {
     const baseUrl = import.meta.env.VITE_MAIL_SERVICE_URL ?? 'http://localhost:4001'
@@ -56,7 +64,7 @@ export function useContactForm(): UseContactFormResult {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...values,
-          topicLabel: topicLabels[values.topic] ?? values.topic,
+          topicLabel: topicOptions.find((option) => option.value === values.topic)?.label ?? values.topic,
         }),
       })
 
@@ -65,15 +73,16 @@ export function useContactForm(): UseContactFormResult {
         return
       }
 
-      reset(defaultFormValues, {
-        keepErrors: false,
-        keepDirty: false,
-        keepTouched: false,
-        keepIsSubmitted: false,
-        keepSubmitCount: false,
-      })
+      reset(defaultFormValues)
       clearErrors()
       setSubmitState('success')
+      show({
+        title: 'Mensaje enviado',
+        message: 'Gracias por escribirnos. Te responderemos pronto.',
+        variant: 'success',
+        duration: 5000,
+        showProgress: true,
+      })
     } catch {
       setSubmitState('error')
     }
@@ -86,5 +95,6 @@ export function useContactForm(): UseContactFormResult {
     isSubmitting,
     submitState,
     onSubmit,
+    selectTopic,
   }
 }

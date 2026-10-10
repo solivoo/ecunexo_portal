@@ -1,15 +1,8 @@
 import { Button, Select, TextArea, TextBox } from 'glubox'
 import type { BaseSyntheticEvent, ReactElement } from 'react'
 import { Controller, type Control, type FieldErrors } from 'react-hook-form'
-import type { ContactFormValues } from '../../../hooks/useContactForm'
-import styles from './FigmaLandingPage.module.css'
-
-const topicOptions = [
-  { value: 'demo', label: 'Solicitar demo' },
-  { value: 'pricing', label: 'Precios e implementación' },
-  { value: 'support', label: 'Soporte técnico' },
-  { value: 'other', label: 'Otra consulta' },
-] as const
+import { topicOptions, type ContactFormValues } from '../../../hooks/useContactForm'
+import styles from './LandingPage.module.css'
 
 export interface ContactFormProps {
   readonly control: Control<ContactFormValues>
@@ -47,6 +40,7 @@ export function ContactForm({
               labelPosition="floating"
               variant="outline"
               fullWidth
+              size="lg"
               autoComplete="name"
               placeholder="Juan Pérez"
               errorMessage={errors.name?.message}
@@ -75,6 +69,7 @@ export function ContactForm({
               labelPosition="floating"
               variant="outline"
               fullWidth
+              size="lg"
               autoComplete="email"
               placeholder="juan@empresa.com"
               errorMessage={errors.email?.message}
@@ -95,6 +90,7 @@ export function ContactForm({
               labelPosition="floating"
               variant="outline"
               fullWidth
+              size="lg"
               autoComplete="organization"
               placeholder="Opcional"
               showClearButton
@@ -115,6 +111,7 @@ export function ContactForm({
               labelPosition="floating"
               variant="outline"
               fullWidth
+              size="lg"
               placeholder="Seleccionar..."
               options={[...topicOptions]}
               value={field.value || undefined}
@@ -140,6 +137,7 @@ export function ContactForm({
               labelPosition="floating"
               variant="outline"
               fullWidth
+              size="lg"
               rows={5}
               resize="vertical"
               placeholder="Cuéntanos sobre tu operación o lo que necesitas"
@@ -149,7 +147,7 @@ export function ContactForm({
         />
       </div>
 
-      <Button type="submit" variant="primary" fullWidth loading={isSubmitting} disabled={isSubmitting}>
+      <Button type="submit" variant="primary" size="lg" fullWidth loading={isSubmitting} disabled={isSubmitting}>
         {isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
       </Button>
 

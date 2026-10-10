@@ -1,6 +1,6 @@
 import type { ReactElement } from 'react'
-import { FigmaLandingPage } from './features/landing/components/FigmaLandingPage'
+import { LandingPage } from './features/landing/components/LandingPage'
 
 export function App(): ReactElement {
-  return <FigmaLandingPage />
+  return <LandingPage />
 }
