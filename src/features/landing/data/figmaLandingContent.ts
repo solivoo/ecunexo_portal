@@ -19,11 +19,6 @@ export interface RecommendationItem {
   readonly description: string
 }
 
-export const dashboardImageUrl =
-  'https://www.figma.com/api/mcp/asset/af621c1c-1bdb-41e2-aa15-4cd75ad1c6a1'
-export const techImageUrl =
-  'https://www.figma.com/api/mcp/asset/f75a83ec-32f6-488a-9fb8-912ff706e085'
-
 export const moduleItems: readonly FeatureItem[] = [
   { title: 'Gestión de Bodegas', description: 'Control total de tu inventario con trazabilidad en tiempo real y auditoría Web3.', tone: 'blue' },
   { title: 'Facturación Electrónica', description: 'Emisión de facturas según normativas del SRI de Ecuador con respaldo verificable.', tone: 'sky' },

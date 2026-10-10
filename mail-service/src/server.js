@@ -14,6 +14,15 @@ const allowedOriginsList = process.env.MAIL_ALLOWED_ORIGINS
   ? process.env.MAIL_ALLOWED_ORIGINS.split(',').map((value) => value.trim()).filter(Boolean)
   : [allowedOrigin]
 
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;')
+}
+
 app.use(
   cors({
     origin: (origin, callback) => {
@@ -45,7 +54,7 @@ app.get('/health', (_req, res) => {
 })
 
 app.post('/api/mail/send', async (req, res) => {
-  const { name, email, company, message } = req.body ?? {}
+  const { name, email, company, message, topic, topicLabel } = req.body ?? {}
 
   if (!name || !email || !message) {
     res.status(400).json({ ok: false, error: 'name, email y message son obligatorios' })
@@ -61,13 +70,20 @@ app.post('/api/mail/send', async (req, res) => {
     return
   }
 
+  const safeName = escapeHtml(name)
+  const safeEmail = escapeHtml(email)
+  const safeCompany = escapeHtml(company || 'No especificada')
+  const safeTopic = escapeHtml(topicLabel || topic || 'No especificado')
+  const safeMessage = escapeHtml(message).replaceAll('\n', '<br/>')
+
   const html = `
     <h2>Nuevo contacto desde landing</h2>
-    <p><strong>Nombre:</strong> ${name}</p>
-    <p><strong>Email:</strong> ${email}</p>
-    <p><strong>Empresa:</strong> ${company || 'No especificada'}</p>
+    <p><strong>Nombre:</strong> ${safeName}</p>
+    <p><strong>Email:</strong> ${safeEmail}</p>
+    <p><strong>Empresa:</strong> ${safeCompany}</p>
+    <p><strong>Tipo de consulta:</strong> ${safeTopic}</p>
     <p><strong>Mensaje:</strong></p>
-    <p>${String(message).replace(/\n/g, '<br/>')}</p>
+    <p>${safeMessage}</p>
   `
 
   try {
@@ -76,16 +92,16 @@ app.post('/api/mail/send', async (req, res) => {
       to: toEmail,
       replyTo: email,
       subject: `Nuevo lead: ${name}`,
-      text: `Nombre: ${name}\nEmail: ${email}\nEmpresa: ${company || 'No especificada'}\n\nMensaje:\n${message}`,
+      text: `Nombre: ${name}\nEmail: ${email}\nEmpresa: ${company || 'No especificada'}\nTipo: ${topicLabel || topic || 'No especificado'}\n\nMensaje:\n${message}`,
       html,
     })
 
     res.status(200).json({ ok: true })
   } catch (error) {
-    const message = error instanceof Error ? error.message : String(error)
+    const errMessage = error instanceof Error ? error.message : String(error)
     // Solo logs del servidor (Portainer / docker logs); no exponer detalle al cliente.
     // eslint-disable-next-line no-console
-    console.error('[mail/send] SMTP:', message)
+    console.error('[mail/send] SMTP:', errMessage)
     res.status(500).json({ ok: false, error: 'No se pudo enviar el correo' })
   }
 })

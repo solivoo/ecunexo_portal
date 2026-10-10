@@ -1,10 +1,10 @@
 .page{
-  --ecu-brand:#6366f1;
-  --ecu-brand-hover:#4f46e5;
-  --ecu-brand-soft:rgba(99,102,241,.22);
-  --ecu-brand-border:rgba(99,102,241,.4);
-  --ecu-accent:#a5b4fc;
-  --ecu-accent-bright:#c7d2fe;
+  --ecu-brand:#1d4ed8;
+  --ecu-brand-hover:#1e40af;
+  --ecu-brand-soft:rgba(29,78,216,.2);
+  --ecu-brand-border:rgba(56,189,248,.35);
+  --ecu-accent:#38bdf8;
+  --ecu-accent-bright:#7dd3fc;
   background:#030712;
   color:#d1d5dc;
   transition:background-color .25s,color .25s;
@@ -29,7 +29,7 @@
 .hero h1{font-size:clamp(2.2rem,4.5vw,3.75rem);color:#fff;margin:1.25rem 0;line-height:1.2}
 .hero h1 span,.section h2 span{color:var(--ecu-accent)}
 .hero p{font-size:1.15rem;line-height:1.6;max-width:60ch}
-.hero img{width:100%;border-radius:.75rem;box-shadow:0 20px 30px #0006}
+.hero img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;display:block;border-radius:.75rem;box-shadow:0 20px 30px #0006}
 .actions{display:flex;gap:1rem;margin-top:2rem}
 .actions button{height:3.25rem;padding:0 1.3rem;border:none;border-radius:.5rem;background:var(--ecu-brand);color:#fff;font-weight:600;cursor:pointer}
 .actions button{display:inline-flex;align-items:center;justify-content:center;gap:.45rem}
@@ -63,16 +63,16 @@
 .reason{display:flex;gap:.9rem;align-items:flex-start;margin-bottom:1.1rem}
 .reason span{display:grid;place-items:center;flex:0 0 1.8rem;height:1.8rem;border-radius:999px;background:var(--ecu-brand);color:#fff;font-weight:700;font-size:.9rem}
 .reason h4{margin:0;color:#fff}.reason p{margin:.4rem 0 0;color:#99a1af}
-.aboutSplit img{width:100%;border-radius:.75rem;box-shadow:0 20px 30px #0006}
+.aboutSplit img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;display:block;border-radius:.75rem;box-shadow:0 20px 30px #0006}
 .contact{background:linear-gradient(144deg,#030712,#101828)}
 .contactGrid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem}
-.form,.info{background:#101828;border:1px solid #1e2939;border-radius:.75rem;padding:1.3rem}
+.form,.info{background:#101828;border:1px solid #1e2939;border-radius:.75rem;padding:1.3rem;--glb-field-canvas:#101828}
 .form{display:flex;flex-direction:column;gap:1rem}
 .form h3,.info h3{margin:0;color:#fff}
-/* Contenedor lógico: no estilos en nodos .e-* de Syncfusion (solo tema EJ2 en syncfusion-theme.css) */
 .formField{display:contents}
 .successText{margin:.5rem 0 0;color:#86efac}
 .errorText{margin:.4rem 0 0;color:#fca5a5;font-size:.85rem}
+.lightMode .form,.lightMode .info{--glb-field-canvas:#ffffff}
 .info p{margin:.2rem 0;color:#99a1af;line-height:1.45}
 .info a{color:var(--ecu-accent);text-decoration:none}
 .info a:hover{text-decoration:underline}

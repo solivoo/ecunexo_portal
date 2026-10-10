@@ -5,6 +5,7 @@ export interface ContactFormValues {
   readonly name: string
   readonly email: string
   readonly company: string
+  readonly topic: string
   readonly message: string
 }
 
@@ -12,7 +13,15 @@ const defaultFormValues: ContactFormValues = {
   name: '',
   email: '',
   company: '',
+  topic: '',
   message: '',
+}
+
+const topicLabels: Record<string, string> = {
+  demo: 'Solicitar demo',
+  pricing: 'Precios e implementación',
+  support: 'Soporte técnico',
+  other: 'Otra consulta',
 }
 
 interface UseContactFormResult {
@@ -34,18 +43,21 @@ export function useContactForm(): UseContactFormResult {
     clearErrors,
   } = useForm<ContactFormValues>({
     defaultValues: defaultFormValues,
-    /* Tras enviar, reset vacía campos; Syncfusion dispara `change` y con onChange se revalidaba todo. */
-    reValidateMode: 'onSubmit',
+    reValidateMode: 'onChange',
   })
 
   const onSubmit = async (values: ContactFormValues): Promise<void> => {
     const baseUrl = import.meta.env.VITE_MAIL_SERVICE_URL ?? 'http://localhost:4001'
+    setSubmitState('idle')
 
     try {
       const response = await fetch(`${baseUrl}/api/mail/send`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values),
+        body: JSON.stringify({
+          ...values,
+          topicLabel: topicLabels[values.topic] ?? values.topic,
+        }),
       })
 
       if (!response.ok) {

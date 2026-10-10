@@ -1,14 +1,15 @@
-import { ButtonComponent } from '@syncfusion/ej2-react-buttons'
-import { TextAreaComponent, TextBoxComponent } from '@syncfusion/ej2-react-inputs'
+import { Button, Select, TextArea, TextBox } from 'glubox'
 import type { BaseSyntheticEvent, ReactElement } from 'react'
 import { Controller, type Control, type FieldErrors } from 'react-hook-form'
 import type { ContactFormValues } from '../../../hooks/useContactForm'
 import styles from './FigmaLandingPage.module.css'
 
-/** Respuesta de change/input en controles Syncfusion EJ2 */
-interface SyncValueArgs {
-  readonly value?: string
-}
+const topicOptions = [
+  { value: 'demo', label: 'Solicitar demo' },
+  { value: 'pricing', label: 'Precios e implementación' },
+  { value: 'support', label: 'Soporte técnico' },
+  { value: 'other', label: 'Otra consulta' },
+] as const
 
 export interface ContactFormProps {
   readonly control: Control<ContactFormValues>
@@ -16,7 +17,6 @@ export interface ContactFormProps {
   readonly errors: FieldErrors<ContactFormValues>
   readonly isSubmitting: boolean
   readonly submitState: 'idle' | 'success' | 'error'
-  /** Devuelto por react-hook-form (`useForm`). */
   readonly handleSubmit: (
     onValid: (values: ContactFormValues) => Promise<void>,
   ) => (e?: BaseSyntheticEvent) => Promise<void>
@@ -30,14 +30,8 @@ export function ContactForm({
   submitState,
   handleSubmit,
 }: ContactFormProps): ReactElement {
-  const textChange =
-    (onChange: (value: string) => void) =>
-    (args: SyncValueArgs): void => {
-      onChange(args.value ?? '')
-    }
-
   return (
-    <form className={styles.form} onSubmit={handleSubmit(onSubmitValid)}>
+    <form className={styles.form} onSubmit={handleSubmit(onSubmitValid)} noValidate>
       <h3>Envíanos un mensaje</h3>
 
       <div className={styles.formField}>
@@ -46,25 +40,19 @@ export function ContactForm({
           control={control}
           rules={{ required: 'El nombre es obligatorio' }}
           render={({ field }) => (
-            <TextBoxComponent
-              width="100%"
-              floatLabelType="Always"
-              placeholder="Nombre: "
-              value={field.value ?? ''}
-              change={textChange(field.onChange)}
-              blur={field.onBlur}
-              htmlAttributes={{
-                name: field.name,
-                id: 'contact-name',
-                autoComplete: 'name',
-                title: 'Ej.: Juan Pérez',
-                'aria-label': 'Nombre completo',
-                style: "height: 2.5rem; font-size: 1rem; display: flex; align-items: center;",
-              }}
+            <TextBox
+              {...field}
+              id="contact-name"
+              label="Nombre"
+              labelPosition="floating"
+              variant="outline"
+              fullWidth
+              autoComplete="name"
+              placeholder="Juan Pérez"
+              errorMessage={errors.name?.message}
             />
           )}
         />
-        {errors.name ? <small className={styles.errorText}>{errors.name.message}</small> : null}
       </div>
 
       <div className={styles.formField}>
@@ -79,26 +67,20 @@ export function ContactForm({
             },
           }}
           render={({ field }) => (
-            <TextBoxComponent
-              width="100%"
-              floatLabelType="Always"
-              placeholder="Email:"
+            <TextBox
+              {...field}
+              id="contact-email"
               type="email"
-              value={field.value ?? ''}
-              change={textChange(field.onChange)}
-              blur={field.onBlur}
-              htmlAttributes={{
-                name: field.name,
-                id: 'contact-email',
-                autoComplete: 'email',
-                title: 'Ej.: juan@empresa.com',
-                'aria-label': 'Email',
-                style: "height: 2.5rem; font-size: 1rem; display: flex; align-items: center;",
-              }}
+              label="Email"
+              labelPosition="floating"
+              variant="outline"
+              fullWidth
+              autoComplete="email"
+              placeholder="juan@empresa.com"
+              errorMessage={errors.email?.message}
             />
           )}
         />
-        {errors.email ? <small className={styles.errorText}>{errors.email.message}</small> : null}
       </div>
 
       <div className={styles.formField}>
@@ -106,21 +88,40 @@ export function ContactForm({
           name="company"
           control={control}
           render={({ field }) => (
-            <TextBoxComponent
-              width="100%"
-              floatLabelType="Always"
-              placeholder="Empresa:"
-              value={field.value ?? ''}
-              change={textChange(field.onChange)}
-              blur={field.onBlur}
-              htmlAttributes={{
-                name: field.name,
-                id: 'contact-company',
-                autoComplete: 'organization',
-                title: 'Opcional. Ej.: Mi Empresa S.A.',
-                'aria-label': 'Empresa',
-                style: "height: 2.5rem; font-size: 1rem; display: flex; align-items: center;",
-              }}
+            <TextBox
+              {...field}
+              id="contact-company"
+              label="Empresa"
+              labelPosition="floating"
+              variant="outline"
+              fullWidth
+              autoComplete="organization"
+              placeholder="Opcional"
+              showClearButton
+            />
+          )}
+        />
+      </div>
+
+      <div className={styles.formField}>
+        <Controller
+          name="topic"
+          control={control}
+          rules={{ required: 'Selecciona el tipo de consulta' }}
+          render={({ field }) => (
+            <Select
+              id="contact-topic"
+              label="Tipo de consulta"
+              labelPosition="floating"
+              variant="outline"
+              fullWidth
+              placeholder="Seleccionar..."
+              options={[...topicOptions]}
+              value={field.value || undefined}
+              onChange={(value) => field.onChange(value)}
+              name={field.name}
+              errorMessage={errors.topic?.message}
+              showClearButton
             />
           )}
         />
@@ -132,41 +133,28 @@ export function ContactForm({
           control={control}
           rules={{ required: 'El mensaje es obligatorio' }}
           render={({ field }) => (
-            <TextAreaComponent
-              width="100%"
-              floatLabelType="Always"
-              placeholder="Mensaje:"
-              resizeMode="Vertical"
+            <TextArea
+              {...field}
+              id="contact-message"
+              label="Mensaje"
+              labelPosition="floating"
+              variant="outline"
+              fullWidth
               rows={5}
-              value={field.value ?? ''}
-              change={textChange(field.onChange)}
-              blur={field.onBlur}
-              htmlAttributes={{
-                name: field.name,
-                id: 'contact-message',
-                title: 'Describe tu proyecto o consulta',
-                'aria-label': 'Mensaje',
-              }}
+              resize="vertical"
+              placeholder="Cuéntanos sobre tu operación o lo que necesitas"
+              errorMessage={errors.message?.message}
             />
           )}
         />
-        {errors.message ? (
-          <small className={styles.errorText}>{errors.message.message}</small>
-        ) : null}
       </div>
 
-      <ButtonComponent
-        type="submit"
-        isPrimary
-        disabled={isSubmitting}
-        cssClass="e-primary e-block"
-      >
-        {isSubmitting ? 'Enviando...' : 'Enviar Mensaje'}{' '}
-        <i className="bx bx-send" />
-      </ButtonComponent>
+      <Button type="submit" variant="primary" fullWidth loading={isSubmitting} disabled={isSubmitting}>
+        {isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
+      </Button>
 
       {submitState === 'success' ? (
-        <p className={styles.successText}>Mensaje enviado correctamente.</p>
+        <p className={styles.successText}>Mensaje enviado correctamente. Te responderemos pronto.</p>
       ) : null}
       {submitState === 'error' ? (
         <p className={styles.errorText}>No se pudo enviar el mensaje. Intenta de nuevo.</p>
